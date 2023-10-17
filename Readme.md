@@ -3,9 +3,9 @@ AAP Installation on OpenShift using OpenShift GitOps
 
 0) Clone this repository and make required changes to the AAP resources and manifests contained in this repository
 
-1a) Follow the steps in the [OpenShift GitOps documentation](https://docs.openshift.com/gitops/1.10/installing_gitops/installing-openshift-gitops.html#installing-gitops-operator-using-cli_installing-openshift-gitops) and install OpenShift GitOps.
+1) Follow the steps in the [OpenShift GitOps documentation](https://docs.openshift.com/gitops/1.10/installing_gitops/installing-openshift-gitops.html#installing-gitops-operator-using-cli_installing-openshift-gitops) and install OpenShift GitOps.
 
-1b) Ensure that the ServiceAccount `openshift-gitops-argocd-application-controller` that's created by OpenShift GitOps, has sufficient rights to modify/administer resources in other projects (i.e. any namespaces that would be created later) using the command:
+Ensure that the ServiceAccount `openshift-gitops-argocd-application-controller` that's created by OpenShift GitOps, has sufficient rights to modify/administer resources in other projects (i.e. any namespaces that would be created later) using the command:
 
 ```
 oc adm policy add-cluster-role-to-user admin -z openshift-gitops-argocd-application-controller -n openshift-gitops --rolebinding-name gitops-admin
