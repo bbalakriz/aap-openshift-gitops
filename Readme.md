@@ -3,7 +3,13 @@ AAP Installation on OpenShift using OpenShift GitOps
 
 0) Clone this repository and make required changes to the AAP resources and manifests contained in this repository
 
-1) Follow the steps in the [OpenShift GitOps documentation](https://docs.openshift.com/gitops/1.10/installing_gitops/installing-openshift-gitops.html#installing-gitops-operator-using-cli_installing-openshift-gitops) and install OpenShift GitOps.
+1a) Follow the steps in the [OpenShift GitOps documentation](https://docs.openshift.com/gitops/1.10/installing_gitops/installing-openshift-gitops.html#installing-gitops-operator-using-cli_installing-openshift-gitops) and install OpenShift GitOps.
+
+1b) Ensure that the ServiceAccount `openshift-gitops-argocd-application-controller` that's created by OpenShift GitOps, has sufficient rights to modify/administer resources in other projects (i.e. any namespaces that would be created later) using the command:
+
+```
+oc adm policy add-cluster-role-to-user admin -z openshift-gitops-argocd-application-controller -n openshift-gitops --rolebinding-name gitops-admin
+```
 
 2) Install [ArgoCD CLI](https://argo-cd.readthedocs.io/en/stable/cli_installation/) on the workstation
 
@@ -13,7 +19,7 @@ AAP Installation on OpenShift using OpenShift GitOps
 argoPass=$(oc get secret/openshift-gitops-cluster -n openshift-gitops -o jsonpath='{.data.admin\.password}' | base64 -d)
 ```
 
-5) Login to OpenShift GitOps from the workstation using the following command:
+4) Login to OpenShift GitOps from the workstation using the following command:
   
 ```
 argoURL=$(oc get route openshift-gitops-server -n openshift-gitops -o jsonpath='{.spec.host}{"\n"}')
