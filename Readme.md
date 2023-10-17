@@ -1,3 +1,8 @@
+AAP Installation on OpenShift using OpenShift GitOps
+======================================================
+
+0) Clone this repository and make required changes to the AAP resources and manifests contained in this repository
+
 1) Follow the steps in the [OpenShift GitOps documentation](https://docs.openshift.com/gitops/1.10/installing_gitops/installing-openshift-gitops.html#installing-gitops-operator-using-cli_installing-openshift-gitops) and install OpenShift GitOps.
 
 2) Install [ArgoCD CLI](https://argo-cd.readthedocs.io/en/stable/cli_installation/) on the workstation
@@ -57,7 +62,7 @@ Message:            successfully synced (all tasks run)
 .....
 ```
 
-**TIP**: Steps 4, 5 and 6 could be done from OpenShift GitOps web console as well using the "New App" option
+**TIP**: Steps 4, 5 and 6 could be done from OpenShift GitOps web console as well using the "New App" option a shown in the Appendix section below. 
 
 7) Log in to the OpenShift GitOps console with the 'admin' user credentials and verify that the aap-install project and all resources are created successfully.
    
@@ -68,3 +73,17 @@ Message:            successfully synced (all tasks run)
 ```
 oc get route aap-controller -n ansible-automation-platform -o jsonpath='{.spec.host}{"\n"}'
 ```
+
+![image](https://github.com/bbalakriz/aap-openshift-gitops/assets/37283315/bb4eebf9-9ed9-452d-93e4-206b0ae788bc)
+
+
+
+
+Appendix:
+=========
+
+Creating ArgoCD project from OpenShift GitOps web console. 
+
+![image](https://github.com/bbalakriz/aap-openshift-gitops/assets/37283315/79d37100-0ca1-4aac-b410-30fda315d5f3)
+
+![image](https://github.com/bbalakriz/aap-openshift-gitops/assets/37283315/0553d1a9-ffb8-48a4-95d4-564e46de511d)
